@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Web and Android share one account document; each account can access only itself.
+    match /users/{userId} {
+      allow read, create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
+
+      match /workouts/{sessionId} {
+        allow read, create: if request.auth != null && request.auth.uid == userId;
+        allow update, delete: if false;
+      }
+
+      // Read-only access supports one-time migration from the older Android schema.
+      match /private/{legacyDocument} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+    }
+
+    match /orders/{orderId} {
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.status == 'awaiting_payment'
+        && request.resource.data.keys().hasAll(['userId', 'userEmail', 'items', 'subtotal', 'shipping', 'total', 'shippingAddress', 'status', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['userId', 'userEmail', 'items', 'subtotal', 'shipping', 'total', 'shippingAddress', 'status', 'createdAt'])
+        && request.resource.data.items is list
+        && request.resource.data.items.size() > 0
+        && request.resource.data.subtotal is number
+        && request.resource.data.shipping is number
+        && request.resource.data.total is number
+        && request.resource.data.total > 0
+        && request.resource.data.total == request.resource.data.subtotal + request.resource.data.shipping
+        && request.resource.data.shippingAddress is map
+        && request.resource.data.shippingAddress.keys().hasAll(['fullName', 'email', 'phone', 'address', 'city', 'state', 'zipCode', 'country']);
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow update, delete: if false;
+    }
+  }
+}
