@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download, Smartphone } from 'lucide-react';
+import { Download, ExternalLink, Globe2, Smartphone } from 'lucide-react';
 import wordmark from '../../imports/flowfit-wordmark.png';
 
 const APK_PATH = '/downloads/flowfit.apk';
@@ -25,10 +25,23 @@ export function DownloadAppPage() {
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
           <Smartphone className="h-7 w-7" />
         </div>
-        <h1 className="mb-3 text-3xl font-bold text-foreground">FlowFit para Android</h1>
+        <h1 className="mb-3 text-3xl font-bold text-foreground">FlowFit en tu celular</h1>
         <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
-          Lleva tu seguimiento del ciclo y tus recomendaciones de movimiento contigo. Inicia sesión con la misma cuenta Google para sincronizar tus datos con la web.
+          Lleva tu ciclo, ejercicios, tienda y perfil contigo. Inicia sesión con la misma cuenta Google para sincronizar tus datos.
         </p>
+        <div className="mb-5 rounded-2xl border border-primary/20 bg-primary/5 p-5 text-left">
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"><Globe2 className="h-5 w-5" /></div>
+            <div>
+              <h2 className="font-semibold text-foreground">iPhone y navegador</h2>
+              <p className="mt-1 text-sm text-muted-foreground">Abre la versión móvil y, en Safari, toca Compartir → Añadir a pantalla de inicio para instalarla como app.</p>
+              <a href="/app/" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">
+                Abrir app móvil <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <p className="mb-3 text-sm font-semibold text-foreground">Android</p>
         {apkReady ? (
           <a href={APK_PATH} download="FlowFit.apk" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90">
             <Download className="h-5 w-5" /> Descargar APK
