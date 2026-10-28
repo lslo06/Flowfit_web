@@ -68,8 +68,8 @@ export function Header() {
               <button onClick={() => scrollToSection('testimonios')} className="text-sm hover:text-primary transition-colors">
                 Bienestar
               </button>
-              <button onClick={() => scrollToSection('app-movil')} className="text-sm hover:text-primary transition-colors">
-                App móvil
+              <button onClick={() => handleNavigation('/descargar')} className="text-sm hover:text-primary transition-colors">
+                App Android
               </button>
             </nav>
           </div>
@@ -126,8 +126,8 @@ export function Header() {
               <button onClick={() => scrollToSection('testimonios')} className="text-sm hover:text-primary transition-colors text-left py-2">
                 Bienestar
               </button>
-              <button onClick={() => scrollToSection('app-movil')} className="text-sm hover:text-primary transition-colors text-left py-2">
-                App móvil
+              <button onClick={() => handleNavigation('/descargar')} className="text-sm hover:text-primary transition-colors text-left py-2">
+                App Android
               </button>
             </div>
           </nav>

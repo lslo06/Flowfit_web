@@ -29,8 +29,7 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Información</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="/#ciclo" className="text-muted-foreground hover:text-primary transition-colors">Guía del ciclo</a></li>
-              <li><a href="/app/" className="text-muted-foreground hover:text-primary transition-colors">App móvil</a></li>
-              <li><Link to="/descargar" className="text-muted-foreground hover:text-primary transition-colors">Descargar Android</Link></li>
+              <li><Link to="/descargar" className="text-muted-foreground hover:text-primary transition-colors">App Android</Link></li>
               <li><Link to="/profile" className="text-muted-foreground hover:text-primary transition-colors">Mi cuenta y pedidos</Link></li>
             </ul>
           </div>
